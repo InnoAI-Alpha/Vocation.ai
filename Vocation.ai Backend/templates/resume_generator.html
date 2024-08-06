@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="static/vocational (1).png">
+    <title>Vocation.ai - Resume AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        function isMobile() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        if (isMobile()) {
+            window.location.href = "mobile.html";
+        }
+    </script>
+    <style>
+        :root {
+            --primary-color: #830c4f;
+            --secondary-color: #f2e1eb;
+            --text-color: #333;
+            --accent-color: #830c4f;
+        }
+        @font-face {
+            font-family: Gidiff;
+            src: url("static/GlacialIndifference-Regular.otf") format("opentype");
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        form {
+            display: grid;
+            gap: 25px;
+        }
+        label {
+            font-weight: 500;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        input, textarea {
+            width: 97%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            border-color: #830c4f;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px #830c4f33;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        textarea#experience, textarea#summary {
+            min-height: 150px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background-color: #6b0a41;
+            transform: translateY(-2px);
+        }
+
+        .dbbtn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .dbbtn:hover {
+            background-color: #6b0a41;
+            transform: translateY(-2px);
+        }
+        .autofill-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .autofill-btn:hover {
+            background-color: #e7c3d8;
+        }
+        #resumePreview {
+            margin-top: 40px;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: white;
+        }
+        #resumePreview h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        #resumePreview h3 {
+            color: var(--accent-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        #resumePreview ul {
+            padding-left: 20px;
+        }
+        #resumePreview p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a style="text-decoration: none;" href="https://vocation-ai.web.app/">
+    <div class="container">
+        <div style="display: flex; align-items: center; justify-content: center;">
+        <img src="static/vocational (1).png" style="width: 20%; height: 20%;">
+        </div>
+        <h1 style="margin-top: 0px; font-family: Gidiff; font-size: 60px; margin-bottom: 10px;">Vocation.ai</h1></a>
+        <h1 style="margin-top: 0px; font-size: 30px; color: var(--text-color);">Resume AI</h1>
+        <form id="resumeForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="summary">Professional Summary:</label>
+            <textarea id="summary" name="summary" rows="6" required></textarea>
+            <div class="button-container">
+                <button type="button" class="autofill-btn" onclick="autofill('summary')">
+                    <i class="fas fa-wand-magic-sparkles"></i> Autofill using AI
+                </button>
+            </div>
+            
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" name="experience" rows="8" required></textarea>
+            <div class="button-container">
+                <button type="button" class="autofill-btn" onclick="autofill('experience')">
+                    <i class="fas fa-wand-magic-sparkles"></i> Autofill using AI
+                </button>
+            </div>
+            
+            <label for="education">Education:</label>
+            <textarea id="education" name="education" rows="5" required></textarea>
+            <div class="button-container">
+                <button type="button" class="autofill-btn" onclick="autofill('education')">
+                    <i class="fas fa-wand-magic-sparkles"></i> Autofill using AI
+                </button>
+            </div>
+            
+            <label for="skills">Skills:</label>
+            <textarea id="skills" name="skills" rows="5" required></textarea>
+            <div class="button-container">
+                <button type="button" class="autofill-btn" onclick="autofill('skills')">
+                    <i class="fas fa-wand-magic-sparkles"></i> Autofill using AI
+                </button>
+            </div>
+            <div class="button-container">
+                <button class="dbbtn" style="font-size: 24px; font-weight: 1000px; margin-top: 10px;" type="button" onclick="generateResume()"><i style="margin-right: 5px;" class="fas fa-wand-magic-sparkles"></i> Generate Resume</button>
+                <button id="xyz" class="dbbtn" style="font-size: 24px; display: none; font-weight: 1000px; margin-top: 10px;" type="button" onclick="db()"><i style="margin-right: 5px;" class="fas fa-file-download"></i> Download Resume</button>
+            </div>
+        </form>
+        <div style="display: none;" id="resumePreview"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function autofill(field) {
+            const content = document.getElementById(field).value;
+            if (content.split(' ').length >= 5) {
+                fetch('/api/autofill', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ field: field, content: content }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById(field).value = data.autofilled_content;
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                alert('Please enter at least 5 words before using autofill.');
+            }
+        }
+
+        var dbs = ''
+
+        function generateResume() {
+            const form = document.getElementById('resumeForm');
+            const preview = document.getElementById('resumePreview');
+            
+            const formatContent = (content) => {
+                return content
+                    .replace(/##\s*(.*?)\s*(\n|$)/g, '<strong>$1</strong><br>')
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\*\s*(.*?)\s*(\n|$)/g, '<li>$1</li>')
+            };
+            
+            const resumeHTML = `
+                <h2>${form.name.value}</h2>
+                <p>${form.email.value} | ${form.phone.value}</p>
+                <p>${form.address.value}</p>
+                <h3>Professional Summary</h3>
+                ${formatContent(form.summary.value)}
+                <h3>Work Experience</h3>
+                ${formatContent(form.experience.value)}
+                <h3>Education</h3>
+                ${formatContent(form.education.value)}
+                <h3>Skills</h3>
+                ${formatContent(form.skills.value)}
+            `;
+            
+            preview.innerHTML = resumeHTML;
+            preview.style.display = "block";
+            document.getElementById("xyz").style.display = "block"
+            
+            html2canvas(preview).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jspdf.jsPDF();
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                
+                let heightLeft = pdfHeight;
+                let position = 0;
+                const pageHeight = pdf.internal.pageSize.getHeight();
+
+                pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - pdfHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+                    heightLeft -= pageHeight;
+                }
+                dbs=pdf
+                
+            });
+        }
+
+        function db() {
+            dbs.save('resume.pdf');
+        }
+
+    </script>
+</body>
+</html>
