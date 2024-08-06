@@ -3,7 +3,7 @@ Empowering rural India's youth through AI driven education and employment soluti
 
 # How to use
 - To see the output, use the prototype link.
-- The project won't run locally without as the API keys and system prompts have been removed.
+- The project won't run locally as the API keys and system prompts have been removed.
 - This was done to avoid unauthorized access to sensitive information and prevent plagiarism.
 - However the full codebase is available for thorough review and evaluation.
 
